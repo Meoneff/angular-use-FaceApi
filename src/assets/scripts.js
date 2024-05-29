@@ -1,4 +1,6 @@
+
 const video = document.getElementById("video");
+document.getElementById('cameraDiv').style.display = 'none';
 const users = [
   {
       id: "map",
@@ -49,6 +51,7 @@ Promise.all([
 
 
 function startWebcam() {
+  document.getElementById('cameraDiv').style.display = 'initial';
   navigator.mediaDevices
     .getUserMedia({
       video: true,
@@ -72,41 +75,13 @@ function stopWebcam() {
 
   video.srcObject = null;
   const canvas = document.getElementById("myCanvas");
-
   // Remove the canvas by ID
   canvas.remove();
-  const data = {
-    users:attendances,
-    workSheetName: `Attendance_${new Date().toLocaleDateString().split('/').join('-')}`,
-    
-    filePath: `../../Attendance_${new Date().toLocaleDateString().split('/').join('-')}.xlsx`,
-    workSheetColumnName: [
-      "ID",
-      "Name",
-      "Date"
-    ]
-    
-  }
-  const jsonData = JSON.stringify(data);
-  fetch('http://localhost:3000/excel/create', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: jsonData
-})
-  .then(response => response.text()) // Change to .text() to handle boolean response
-  .then(data => {
-    if (data === 'true') {
-      alert('Excel file created successfully.');
-    } else {
-      alert('Failed to create Excel file.');
-    }
-  })
-  .catch(error => {
-    console.error(error);
-  });
   console.log(attendances);
+  const jsonDataToSaveSesionStorage = JSON.stringify(attendances);
+  // Lưu chuỗi JSON vào sessionStorage
+  sessionStorage.setItem('attendances', jsonDataToSaveSesionStorage);
+  document.getElementById('cameraDiv').style.display = 'none';
 }
 
 

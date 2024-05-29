@@ -10,11 +10,14 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <div class="control">
+  <div class="control" id="controlDiv">
     <button onclick="startWebcam()" class="button">Start</button>
     <button onclick="stopWebcam()">End</button>
+</div>
+<div class="camera" id="cameraDiv">
+    <video id="video" width="600" height="450" autoplay>
+    </video>
   </div>
-  <div class="camera">  <video id="video" width="600" height="450" autoplay></video></div>
-
+  <app-root></app-root>
 </body>
 </html>
