@@ -9,9 +9,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './statistical-attendance.component.scss'
 })
 export class StatisticalAttendanceComponent {
+  attendancesToRender: any[] = [];
   click() {
     const  attendances = sessionStorage.getItem('attendances');
     const attendancesAfterParse = JSON.parse(attendances??"[]");
     console.log(attendancesAfterParse);
+    this.attendancesToRender = attendancesAfterParse;
   }
 }

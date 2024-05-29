@@ -5,38 +5,32 @@ const users = [
   {
       id: "map",
       name: 'Nguyễn Minh Khoa',
-      date: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01')
 
   },
   {
       id: "hau",
       name: 'Bùi Phúc Hậu',
-      date: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01')
   },
   {
       id: "phun",
       name: 'Phùng Minh Khoa',
-      date: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01')
   },
   {
       id: "beo",
       name: 'Nguyễn Minh Khôi',
-      date: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01')
   },
   {
       id: "duy",
       name: 'Hà Hoàng Duy',
-      date: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01')
   }
 
 ];
-const workSheetColumnName = [
-  "ID",
-  "Name",
-  "Date"
-]
-const workSheetName = 'Users';
-const filePath = './excel-from-js.xlsx';
+
 
 
 const attendances = [];
@@ -139,6 +133,9 @@ video.addEventListener("play", async () => {
         });
           const foundUser = users.find(user => user.id === result.label);
           if (foundUser) {
+            const timeAttendance = new Date();
+            const vietnamTime = new Date(timeAttendance.getTime() + 7 * 60 * 60 * 1000);
+            foundUser.timeAttendance =vietnamTime;
             console.log("User found:", foundUser);
             if(!attendances.includes(foundUser)){
               attendances.push(foundUser);
