@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-statistical-attendance',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './statistical-attendance.component.html',
   styleUrl: './statistical-attendance.component.scss'
 })
