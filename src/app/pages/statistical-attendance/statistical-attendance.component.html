@@ -8,4 +8,7 @@
     </thead>
     <tbody>
     </tbody>
+    <input type="file" (change)="onFileChange($event)" />
+<button (click)="editFile()">Edit File</button>
+<a [href]="downloadLink" download="edited_file.xlsx">Download Edited File</a>
 </table>

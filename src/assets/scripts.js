@@ -6259,23 +6259,32 @@ const users = [
   {
       id: "map",
       name: 'Nguyễn Minh Khoa',
-      timeAttendance: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01'),
+      row: 1,
+      attendance: false
 
   },
   {
       id: "hau",
       name: 'Bùi Phúc Hậu',
-      timeAttendance: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01'),
+      row: 4,
+      attendance: false
+
   },
   {
       id: "phun",
       name: 'Phùng Minh Khoa',
-      timeAttendance: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01'),
+      row: 2,
+      attendance: false
   },
   {
       id: "duy",
       name: 'Hà Hoàng Duy',
-      timeAttendance: new Date('2021-09-01')
+      timeAttendance: new Date('2021-09-01'),
+      row: 3,
+      attendance: false
   }
 
 ];
@@ -6321,7 +6330,7 @@ function stopWebcam() {
   // Remove the canvas by ID
   canvas.remove();
   console.log(attendances);
-  const jsonDataToSaveSesionStorage = JSON.stringify(attendances);
+  const jsonDataToSaveSesionStorage = JSON.stringify(users);
   // Lưu chuỗi JSON vào sessionStorage
   sessionStorage.setItem('attendances', jsonDataToSaveSesionStorage);
   document.getElementById('cameraDiv').style.display = 'none';
@@ -6376,10 +6385,7 @@ video.addEventListener("play", async () => {
             const timeAttendance = new Date();
             const vietnamTime = new Date(timeAttendance.getTime() + 7 * 60 * 60 * 1000);
             foundUser.timeAttendance =vietnamTime;
-            console.log("User found:", foundUser);
-            if(!attendances.includes(foundUser)){
-              attendances.push(foundUser);
-            }
+            foundUser.attendance = true;
           } else {
             console.log("User with ID", targetId, "not found.");
           }
