@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,145 @@
   <title>Điểm danh</title>
   <script defer src="assets/face-api.min.js"></script>
   <script defer src="assets/scripts.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="assets/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
-  <div class="control" id="controlDiv">
-    <button onclick="startWebcam()" class="button">Start</button>
-    <button onclick="stopWebcam()">End</button>
-</div>
-<div class="camera" id="cameraDiv">
-    <video id="video" width="600" height="450" autoplay>
-    </video>
+  <div id="container-atten">
+    <!-- Column 1: Content Wrapper -->
+    <div class="content-wrapper">
+      <app-root></app-root>
+      <div class="attendance-sheet" id="attendanceSheet">
+        <!-- Bảng điểm danh sẽ được chèn ở đây -->
+      </div>
+    </div>
+
+    <!-- Column 2: Header, Start/Stop Buttons, and Camera -->
+    <div class="header-control">
+      <header class="header">
+        <h1>ATTENDANCE SYSTEM</h1>
+      </header>
+      <main class="main-content">
+        <div class="camera" id="cameraDiv">
+          <video id="video" width="600" height="450" autoplay></video>
+        </div>
+        <div class="control" id="controlDiv">
+          <button onclick="startWebcam()" class="button">Bắt đầu</button>
+          <button onclick="stopWebcam()" class="button">Kết thúc</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- Column 3: Date and Dropdowns -->
+    <div class="date-dropdown">
+      <div class="dropdown-container">
+        <form id="attendance-form">
+          <div class="dropdown">
+            <label for="month">Chọn tháng:</label>
+            <select id="month" name="month" onchange="updateDaysAndWeeks()">
+              <option value="january">Tháng 1</option>
+              <option value="february">Tháng 2</option>
+              <option value="march">Tháng 3</option>
+              <option value="april">Tháng 4</option>
+              <option value="may">Tháng 5</option>
+              <option value="june">Tháng 6</option>
+              <option value="july">Tháng 7</option>
+              <option value="august">Tháng 8</option>
+              <option value="september">Tháng 9</option>
+              <option value="october">Tháng 10</option>
+              <option value="november">Tháng 11</option>
+              <option value="december">Tháng 12</option>
+            </select>
+          </div>
+          <div class="dropdown">
+            <label for="week">Chọn tuần:</label>
+            <select id="week" name="week">
+              <option value="week1">Tuần 1</option>
+              <option value="week2">Tuần 2</option>
+              <option value="week3">Tuần 3</option>
+              <option value="week4">Tuần 4</option>
+              <option value="week5" class="disabled">Tuần 5</option>
+              <option value="week6" class="disabled">Tuần 6</option>
+            </select>
+          </div>
+          <button type="submit" class="button">Điểm Danh</button>
+        </form>
+      </div>
+      <div id="current-date" class="current-date"></div>
+      <div id="datepicker" class="datepicker"></div>
+    </div>
   </div>
-  <app-root></app-root>
+  <footer class="footer">
+    <p>&copy; NguyễnKhoa - PhùngKhoa - HoàngDuy - PhúcHậu</p>
+  </footer>
+
+  <script>
+    $(function () {
+      $("#datepicker").datepicker();
+    });
+
+    document.getElementById('attendance-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const month = document.getElementById('month').value;
+      const week = document.getElementById('week').value;
+      alert(`Bạn đã điểm danh vào tháng ${month} của ${week}`);
+
+    });
+
+    function updateDaysAndWeeks() {
+      const month = document.getElementById('month').value;
+      const weekSelect = document.getElementById('week');
+      const daysInMonth = {
+        january: 31,
+        february: 28,
+        march: 31,
+        april: 30,
+        may: 31,
+        june: 30,
+        july: 31,
+        august: 31,
+        september: 30,
+        october: 31,
+        november: 30,
+        december: 31
+      };
+
+      const currentYear = new Date().getFullYear();
+      if (month === 'february' && ((currentYear % 4 === 0 && currentYear % 100 !== 0) || (currentYear % 400 === 0))) {
+        daysInMonth.february = 29;
+      }
+
+      const firstDayOfMonth = new Date(currentYear, Object.keys(daysInMonth).indexOf(month), 1).getDay();
+      const totalDays = daysInMonth[month];
+      const weeksInMonth = Math.ceil((totalDays + firstDayOfMonth) / 7);
+
+      for (let i = 1; i <= 6; i++) {
+        const option = weekSelect.options[i - 1];
+        if (i <= weeksInMonth) {
+          option.classList.remove('disabled');
+          option.disabled = false;
+        } else {
+          option.classList.add('disabled');
+          option.disabled = true;
+        }
+      }
+    }
+
+    function displayCurrentDate() {
+      const currentDate = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = currentDate.toLocaleDateString('vi-VN', options);
+      document.getElementById('current-date').textContent = `Hôm nay là: ${formattedDate}`;
+    }
+
+    displayCurrentDate();
+    updateDaysAndWeeks();
+  </script>
 </body>
+
 </html>

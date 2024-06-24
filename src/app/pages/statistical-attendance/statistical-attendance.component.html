@@ -1,9 +1,11 @@
-<button (click)="click()"></button>
-<table >
+<div id="exc">
+    <button (click)="click()">EXC</button>
+</div>
+<table>
     <thead>
         <tr *ngFor="let attendance of attendancesToRender">
-        <th>{{attendance.name}}</th>
-        <th>{{attendance.timeAttendance}}</th>
+            <th>{{attendance.name}}</th>
+            <th>{{attendance.timeAttendance}}</th>
         </tr>
     </thead>
     <tbody>
