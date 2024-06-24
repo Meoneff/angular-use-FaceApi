@@ -6375,7 +6375,7 @@ video.addEventListener("play", async () => {
 
     results.forEach((result, i) => {
       console.log(result);
-      if(result.distance <0.4){
+      if(result.distance <0.45){
         const box = resizedDetections[i].detection.box;
         const drawBox = new faceapi.draw.DrawBox(box, {
           label: result.label,

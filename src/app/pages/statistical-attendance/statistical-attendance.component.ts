@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import * as xlsx from 'xlsx';
 
 
-
 @Component({
   selector: 'app-statistical-attendance',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './statistical-attendance.component.html',
-  styleUrl: './statistical-attendance.component.scss'
+  styleUrl: './statistical-attendance.component.scss',
 })
 export class StatisticalAttendanceComponent {
   attendancesToRender: any[] = [];
@@ -111,5 +110,40 @@ export class StatisticalAttendanceComponent {
   click() {
 
   }
-  
+
+  renderAttendanceSheet() {
+    const sheet = document.getElementById('attendanceSheet');
+    if (sheet) {
+      sheet.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${this.attendancesToRender
+              .map(
+                (attendance) => `
+              <tr>
+                <td>${attendance.name}</td>
+                <td>${attendance.date}</td>
+                <td>${attendance.time}</td>
+              </tr>
+            `
+              )
+              .join('')}
+          </tbody>
+        </table>
+      `;
+    }
+  }
+  clearAttendanceSheet() {
+    const sheet = document.getElementById('attendanceSheet');
+    if (sheet) {
+      sheet.innerHTML = '';
+    }
+  }
 }
