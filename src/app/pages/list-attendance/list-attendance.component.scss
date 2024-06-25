@@ -1,0 +1,56 @@
+.attendance-table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Header cell */
+  .student-header {
+    background: #F3B270;
+    color: #FFFFFF;
+    font-weight: 400;
+    text-align: left;
+    
+    padding: 10px; 
+  }
+  
+  .classname-header, .daytime-header, .status-header, .remarks-header {
+    background: #F3B270;
+    color: #FFFFFF;
+    font-weight: 400;
+    text-align: left;
+    margin-right: 100px;
+    padding: 10px; /* Add padding to the header cells */
+  }
+  
+  /* Data cells */
+  .student-name, .class-name, .day-time, .status, .remarks, .id-number {
+    padding: 10px; /* Add padding to the data cells */
+  }
+  
+  .student-name {
+    width: 150px; /* Adjust the width as needed */
+    text-align: left;
+  }
+  
+  .id-number {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Additional styling for specific cells if needed */
+  .class-name {
+    /* Adjust width, text alignment, and padding as needed */
+  }
+  
+  .day-time {
+    /* Adjust width, text alignment, and padding as needed */
+  }
+  
+  .status {
+    /* Adjust width, text alignment, and padding as needed */
+  }
+  
+  .remarks {
+    /* Adjust width, text alignment, and padding as needed */
+  }

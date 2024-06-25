@@ -6259,31 +6259,27 @@ const users = [
   {
       id: "map",
       name: 'Nguyễn Minh Khoa',
-      timeAttendance: new Date('2021-09-01'),
-      row: 1,
+      row: 2,
       attendance: false
 
   },
   {
       id: "hau",
       name: 'Bùi Phúc Hậu',
-      timeAttendance: new Date('2021-09-01'),
-      row: 4,
+      row: 5,
       attendance: false
 
   },
   {
       id: "phun",
       name: 'Phùng Minh Khoa',
-      timeAttendance: new Date('2021-09-01'),
-      row: 2,
+      row: 3,
       attendance: false
   },
   {
       id: "duy",
       name: 'Hà Hoàng Duy',
-      timeAttendance: new Date('2021-09-01'),
-      row: 3,
+      row: 4,
       attendance: false
   }
 
@@ -6382,9 +6378,6 @@ video.addEventListener("play", async () => {
         });
           const foundUser = users.find(user => user.id === result.label);
           if (foundUser) {
-            const timeAttendance = new Date();
-            const vietnamTime = new Date(timeAttendance.getTime() + 7 * 60 * 60 * 1000);
-            foundUser.timeAttendance =vietnamTime;
             foundUser.attendance = true;
           } else {
             console.log("User with ID", targetId, "not found.");

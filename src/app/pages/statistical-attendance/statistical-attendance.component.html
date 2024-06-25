@@ -1,16 +1,9 @@
-<div id="exc">
-    <button (click)="click()">EXC</button>
+<div class="dropdown">
+    <input class="dropdown-toggle" type="text">
+    <div class="dropdown-text">Account</div>
+    <ul class="dropdown-content">
+        <li *ngFor="let item of lesson "><a (click)="chooseLesson(item)">Buổi {{item.column}}</a></li>
+    </ul>
 </div>
-<table>
-    <thead>
-        <tr *ngFor="let attendance of attendancesToRender">
-            <th>{{attendance.name}}</th>
-            <th>{{attendance.timeAttendance}}</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-    <input type="file" (change)="onFileChange($event)" />
-<button (click)="editFile()">Edit File</button>
-<a [href]="downloadLink" download="edited_file.xlsx">Download Edited File</a>
-</table>
+<button (click)="attendance()" >Điểm danh</button>
+

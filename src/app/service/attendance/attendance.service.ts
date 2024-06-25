@@ -9,10 +9,14 @@ export class AttendanceService {
   constructor(private httpClient: HttpClient) {}
 
   edit(sheetName: string, column: number, attendances: any[]) {
-    return this.httpClient.put(`http://localhost:3000/excel/edit?sheetName=${sheetName}&colum=${column}`, {attendances: attendances});
+    console.log(attendances);
+    
+    return this.httpClient.post(`http://localhost:3000/excel/edit?sheetName=${sheetName}&colum=${column}`, {attendances: attendances});
   }
   read(sheetName: string, column: number,row: number) {
-    return this.httpClient.get<any[]>(`http://localhost:3000/excel/read?sheetName=${sheetName}&column=${column}`);
+    console.log(sheetName);
+    
+    return this.httpClient.post<any[]>(`http://localhost:3000/excel/read?sheetName=${sheetName}&colum=${column}&row=${row}`,{});
   }
 
 }

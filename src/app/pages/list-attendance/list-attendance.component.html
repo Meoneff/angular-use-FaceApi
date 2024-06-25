@@ -1,1 +1,14 @@
-<p>list-attendance works!</p>
+
+<button (click)="showAttendance()">Hiển thị sinh viên đã điểm danh</button>
+<table class="attendance-table">
+    <tr>
+        <th class="student-header">Student</th>
+        <th class="status-header">Attendance</th>
+    </tr>
+
+    <tr *ngFor="let item of attendancesToRender">
+        <td class="student-name">{{item.name}}<br><span class="id-number">{{item.row-1}}</span></td>
+        <td class="status" *ngIf="item.attendance">Đã điểm danh</td>
+        <td class="status" *ngIf="!item.attendance">Chưa điểm danh</td>
+    </tr>
+</table>

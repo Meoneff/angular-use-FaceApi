@@ -20,10 +20,8 @@
   <div id="container-atten">
     <!-- Column 1: Content Wrapper -->
     <div class="content-wrapper">
-      <app-root></app-root>
-      <div class="attendance-sheet" id="attendanceSheet">
-        <!-- Bảng điểm danh sẽ được chèn ở đây -->
-      </div>
+      <app-statistical-attendance></app-statistical-attendance>
+
     </div>
 
     <!-- Column 2: Header, Start/Stop Buttons, and Camera -->
@@ -45,109 +43,12 @@
     <!-- Column 3: Date and Dropdowns -->
     <div class="date-dropdown">
       <app-list-attendance></app-list-attendance>
-      <div class="dropdown-container">
-        <form id="attendance-form">
-          <div class="dropdown">
-            <label for="month">Chọn tháng:</label>
-            <select id="month" name="month" onchange="updateDaysAndWeeks()">
-              <option value="january">Tháng 1</option>
-              <option value="february">Tháng 2</option>
-              <option value="march">Tháng 3</option>
-              <option value="april">Tháng 4</option>
-              <option value="may">Tháng 5</option>
-              <option value="june">Tháng 6</option>
-              <option value="july">Tháng 7</option>
-              <option value="august">Tháng 8</option>
-              <option value="september">Tháng 9</option>
-              <option value="october">Tháng 10</option>
-              <option value="november">Tháng 11</option>
-              <option value="december">Tháng 12</option>
-            </select>
-          </div>
-          <div class="dropdown">
-            <label for="week">Chọn tuần:</label>
-            <select id="week" name="week">
-              <option value="week1">Tuần 1</option>
-              <option value="week2">Tuần 2</option>
-              <option value="week3">Tuần 3</option>
-              <option value="week4">Tuần 4</option>
-              <option value="week5" class="disabled">Tuần 5</option>
-              <option value="week6" class="disabled">Tuần 6</option>
-            </select>
-          </div>
-          <button type="submit" class="button">Điểm Danh</button>
-        </form>
-      </div>
-      <div id="current-date" class="current-date"></div>
-      <div id="datepicker" class="datepicker"></div>
+
     </div>
   </div>
   <footer class="footer">
     <p>&copy; NguyễnKhoa - PhùngKhoa - HoàngDuy - PhúcHậu</p>
   </footer>
-
-  <script>
-    $(function () {
-      $("#datepicker").datepicker();
-    });
-
-    document.getElementById('attendance-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const month = document.getElementById('month').value;
-      const week = document.getElementById('week').value;
-      alert(`Bạn đã điểm danh vào tháng ${month} của ${week}`);
-
-    });
-
-    function updateDaysAndWeeks() {
-      const month = document.getElementById('month').value;
-      const weekSelect = document.getElementById('week');
-      const daysInMonth = {
-        january: 31,
-        february: 28,
-        march: 31,
-        april: 30,
-        may: 31,
-        june: 30,
-        july: 31,
-        august: 31,
-        september: 30,
-        october: 31,
-        november: 30,
-        december: 31
-      };
-
-      const currentYear = new Date().getFullYear();
-      if (month === 'february' && ((currentYear % 4 === 0 && currentYear % 100 !== 0) || (currentYear % 400 === 0))) {
-        daysInMonth.february = 29;
-      }
-
-      const firstDayOfMonth = new Date(currentYear, Object.keys(daysInMonth).indexOf(month), 1).getDay();
-      const totalDays = daysInMonth[month];
-      const weeksInMonth = Math.ceil((totalDays + firstDayOfMonth) / 7);
-
-      for (let i = 1; i <= 6; i++) {
-        const option = weekSelect.options[i - 1];
-        if (i <= weeksInMonth) {
-          option.classList.remove('disabled');
-          option.disabled = false;
-        } else {
-          option.classList.add('disabled');
-          option.disabled = true;
-        }
-      }
-    }
-
-    function displayCurrentDate() {
-      const currentDate = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = currentDate.toLocaleDateString('vi-VN', options);
-      document.getElementById('current-date').textContent = `Hôm nay là: ${formattedDate}`;
-    }
-
-    displayCurrentDate();
-    updateDaysAndWeeks();
-  </script>
 </body>
 
 </html>

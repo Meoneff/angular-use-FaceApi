@@ -1,4 +1,5 @@
-import { ApplicationConfig } from '@angular/core';
+import { provideAnimations } from "@angular/platform-browser/animations";
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,7 +11,7 @@ import { provideEffects } from '@ngrx/effects';
 import { AttendanceEffects } from './ngrx/effects/attendance.effects';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync('noop'),
+  providers: [provideAnimations(), provideRouter(routes), provideAnimationsAsync('noop'),
   provideStore(),
   provideState({name:'attendance', reducer: attendanceReducer}),
   provideEffects(
@@ -20,7 +21,5 @@ export const appConfig: ApplicationConfig = {
   ),
 
   provideHttpClient()
-  
-  
 ]
 };
