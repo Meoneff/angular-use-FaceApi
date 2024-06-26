@@ -1,14 +1,19 @@
-
-<button (click)="showAttendance()">Hiển thị sinh viên đã điểm danh</button>
+<button class="attendance-button" (click)="showAttendance()">Hiển thị sinh viên đã điểm danh</button>
 <table class="attendance-table">
-    <tr>
-        <th class="student-header">Student</th>
-        <th class="status-header">Attendance</th>
-    </tr>
-
-    <tr *ngFor="let item of attendancesToRender">
-        <td class="student-name">{{item.name}}<br><span class="id-number">{{item.row-1}}</span></td>
-        <td class="status" *ngIf="item.attendance">Đã điểm danh</td>
-        <td class="status" *ngIf="!item.attendance">Chưa điểm danh</td>
-    </tr>
+    <thead>
+        <tr>
+            <th class="id-header">ID</th>
+            <th class="student-header">Student</th>
+            <th class="status-header">Attendance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of attendancesToRender">
+            <td class="id-number">{{ item.row - 1 }}</td>
+            <td class="student-name">{{ item.name }}</td>
+            <td class="status" [ngClass]="{'attended': item.attendance, 'not-attended': !item.attendance}">
+                {{ item.attendance ? 'Đã điểm danh' : 'Chưa điểm danh' }}
+            </td>
+        </tr>
+    </tbody>
 </table>
