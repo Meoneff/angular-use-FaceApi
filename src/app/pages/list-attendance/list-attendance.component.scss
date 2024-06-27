@@ -1,56 +1,109 @@
+.attendance-button {
+  display: inline-block;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    background-color: #397d3d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
+  }
+}
+
 .attendance-table {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    border-collapse: collapse;
+  margin: 20px auto;
+  width: 80%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-table th,
+.attendance-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.attendance-table th {
+  background-color: #f3b270;
+  color: #fff;
+  font-weight: 400;
+}
+
+.attendance-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.attendance-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.id-header,
+.student-header,
+.classname-header,
+.daytime-header,
+.status-header,
+.remarks-header {
+  background: #f3b270;
+  color: #ffffff;
+  font-weight: bold !important;
+  text-align: center !important;
+  padding: 10px;
+}
+
+.student-name,
+.class-name,
+.day-time,
+.status,
+.remarks,
+.id-number {
+  padding: 10px;
+}
+
+.student-name {
+  width: 150px;
+  text-align: left;
+}
+
+.id-number {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.9em;
+}
+
+.status {
+  width: 150px;
+
+  &.attended {
+    color: green;
+    font-weight: bold;
   }
-  
-  /* Header cell */
-  .student-header {
-    background: #F3B270;
-    color: #FFFFFF;
-    font-weight: 400;
-    text-align: left;
-    
-    padding: 10px; 
+
+  &.not-attended {
+    color: red;
+    font-weight: bold;
   }
-  
-  .classname-header, .daytime-header, .status-header, .remarks-header {
-    background: #F3B270;
-    color: #FFFFFF;
-    font-weight: 400;
-    text-align: left;
-    margin-right: 100px;
-    padding: 10px; /* Add padding to the header cells */
-  }
-  
-  /* Data cells */
-  .student-name, .class-name, .day-time, .status, .remarks, .id-number {
-    padding: 10px; /* Add padding to the data cells */
-  }
-  
-  .student-name {
-    width: 150px; /* Adjust the width as needed */
-    text-align: left;
-  }
-  
-  .id-number {
-    color: rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Additional styling for specific cells if needed */
-  .class-name {
-    /* Adjust width, text alignment, and padding as needed */
-  }
-  
-  .day-time {
-    /* Adjust width, text alignment, and padding as needed */
-  }
-  
-  .status {
-    /* Adjust width, text alignment, and padding as needed */
-  }
-  
-  .remarks {
-    /* Adjust width, text alignment, and padding as needed */
-  }
+}
+
+.remarks {
+}

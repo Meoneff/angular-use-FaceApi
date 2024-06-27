@@ -1,9 +1,27 @@
-<div class="dropdown">
-    <input class="dropdown-toggle" type="text">
-    <div class="dropdown-text">Account</div>
-    <ul class="dropdown-content">
-        <li *ngFor="let item of lesson "><a (click)="chooseLesson(item)">Buổi {{item.column}}</a></li>
+<!-- <div class="dropdown">
+    <input class="dropdown-toggle" type="text" (click)="toggleDropdown()" />
+    <div class="dropdown-text">{{ selectedLessonText }}</div>
+    <ul class="dropdown-content" [class.show]="dropdownOpen">
+        <li>
+            <a (click)="chooseLesson(null)">__________</a>
+        </li>
+        <li *ngFor="let item of lesson">
+            <a (click)="chooseLesson(item)">Buổi {{ item.column }}</a>
+        </li>
     </ul>
 </div>
-<button (click)="attendance()" >Điểm danh</button>
+<button class="attendance-button" (click)="attendance()">Điểm danh</button> -->
 
+<div class="dropdown" [class.error]="dropdownError">
+    <input class="dropdown-toggle" type="text" (click)="toggleDropdown()" />
+    <div class="dropdown-text">{{ selectedLessonText }}</div>
+    <ul class="dropdown-content" [class.show]="dropdownOpen">
+        <li>
+            <a (click)="chooseLesson(null)">__________</a>
+        </li>
+        <li *ngFor="let item of lesson">
+            <a (click)="chooseLesson(item)">Buổi {{ item.column }}</a>
+        </li>
+    </ul>
+</div>
+<button class="attendance-button" (click)="attendance()">Điểm danh</button>

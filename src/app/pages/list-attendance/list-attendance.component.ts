@@ -6,15 +6,15 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './list-attendance.component.html',
-  styleUrl: './list-attendance.component.scss'
+  styleUrls: ['./list-attendance.component.scss'],
 })
 export class ListAttendanceComponent {
   attendancesToRender: any[] = [];
-  showAttendance(){
+
+  showAttendance() {
     const attendances = sessionStorage.getItem('attendances');
-    const attendancesAfterParse = JSON.parse(attendances??"[]");
-  
+    const attendancesAfterParse = JSON.parse(attendances ?? '[]');
+
     this.attendancesToRender = attendancesAfterParse;
   }
-
 }
