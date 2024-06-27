@@ -18,5 +18,8 @@ export class AttendanceService {
     
     return this.httpClient.post<any[]>(`http://localhost:3000/excel/read?sheetName=${sheetName}&colum=${column}&row=${row}`,{});
   }
+  download() {
+    return this.httpClient.get(`http://localhost:3000/excel/download`);
+  }
 
 }

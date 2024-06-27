@@ -257,24 +257,15 @@ export class StatisticalAttendanceComponent {
     console.log('Lesson chosen:', lesson);
 
     if (lesson === null) {
-      this.alerts
-        .open('', {
-          label: 'Vui lòng chọn buổi học hợp lệ',
-          status: 'error',
-          data: { className: 'custom-alert-error' },
-        })
-        .subscribe();
+      this.showErrorSnackbar('Vui lòng chọn buổi học hợp lệ')
       this.lessonChosen = 0;
       this.selectedLessonText = 'Chọn Buổi';
       this.dropdownOpen = false;
     } else if (lesson.attendance) {
-      this.alerts
-        .open('', {
-          label: 'Buổi học đã được điểm danh',
-          status: 'error',
-          data: { className: 'custom-alert-error' },
-        })
-        .subscribe();
+      this.showErrorSnackbar('Buổi học đã được điểm danh');
+      this.dropdownOpen = false;
+      this.dropdownError = false;
+
     } else {
       this.alerts
         .open('', {

@@ -25,3 +25,14 @@ export const readFailure = createAction(
     '[Attendance] Read Failure',
     props<{error: string}>()
     );
+
+    export const download = createAction(
+        '[Attendance] Download',
+        );
+    export const downloadSuccess = createAction(
+        '[Attendance] Download Success',
+        );
+    export const downloadFailure = createAction(
+        '[Attendance] Download Failure',
+        props<{error: string}>()
+        );

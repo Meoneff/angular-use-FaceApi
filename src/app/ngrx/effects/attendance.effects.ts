@@ -22,4 +22,10 @@ export class AttendanceEffects {
         map(attendances => AttendanceActions.readSuccess({attendances}))
         ))
     ));
+    download$ = createEffect(() => this.actions$.pipe(
+        ofType(AttendanceActions.download),
+        mergeMap(() => this.attendanceService.download().pipe(
+        map(() => AttendanceActions.downloadSuccess())
+        ))
+    ));
 }

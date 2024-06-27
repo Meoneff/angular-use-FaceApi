@@ -9,6 +9,7 @@ body {
 }
 canvas {
   position: absolute;
+  top: 130px;
 }
 
 #container-atten {

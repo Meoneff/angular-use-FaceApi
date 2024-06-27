@@ -6,4 +6,8 @@ export interface AttendanceState {
     isReadSuccess: boolean;
     readError: string;
     attendances: any[];
+    isDownloading: boolean;
+    isDownloadSuccess: boolean;
+    downloadError: string;
+    
 }   

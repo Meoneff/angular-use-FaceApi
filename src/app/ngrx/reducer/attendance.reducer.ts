@@ -9,7 +9,10 @@ export const initialState: AttendanceState = {
     isReading: false,
     isReadSuccess: false,
     readError: "",
-    attendances: []
+    attendances: [],
+    downloadError: "",
+    isDownloading: false,
+    isDownloadSuccess: false
 };
 
 export const attendanceReducer = createReducer(
@@ -60,6 +63,30 @@ export const attendanceReducer = createReducer(
             isReadSuccess: false,
             readError: action.error
         };
+    }),
+    on(AttendanceActions.download, (state,action) => {
+        return {
+            ...state,
+            isDownloading: true,
+            isDownloadSuccess: false,
+            downloadError: ""
+        };
+    }),
+    on(AttendanceActions.downloadSuccess, (state,action) => {
+        return {
+            ...state,
+            isDownloading: false,
+            isDownloadSuccess: true
+        };
+    }),
+    on(AttendanceActions.downloadFailure, (state,action) => {
+        return {
+            ...state,
+            isDownloading: false,
+            isDownloadSuccess: false,
+            downloadError: action.error
+        };
     })
+    
     
 )
