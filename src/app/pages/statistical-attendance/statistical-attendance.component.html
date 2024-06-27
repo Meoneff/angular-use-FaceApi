@@ -1,31 +1,19 @@
-<!-- <div class="dropdown">
-    <input class="dropdown-toggle" type="text" (click)="toggleDropdown()" />
-    <div class="dropdown-text">{{ selectedLessonText }}</div>
-    <ul class="dropdown-content" [class.show]="dropdownOpen">
-        <li>
-            <a (click)="chooseLesson(null)">__________</a>
-        </li>
-        <li *ngFor="let item of lesson">
-            <a (click)="chooseLesson(item)">Buổi {{ item.column }}</a>
-        </li>
-    </ul>
+<div class="button-container">
+    <div class="dropdown" [class.error]="dropdownError">
+        <input class="dropdown-toggle" type="text" (click)="toggleDropdown()" />
+        <div class="dropdown-text">{{ selectedLessonText }}</div>
+        <ul class="dropdown-content" [class.show]="dropdownOpen">
+            <li>
+                <a (click)="chooseLesson(null)">__________</a>
+            </li>
+            <li *ngFor="let item of lesson">
+                <a (click)="chooseLesson(item)" *ngIf="item.attendance" class="attended">Buổi {{ item.column }}</a>
+                <a (click)="chooseLesson(item)" *ngIf="!item.attendance" class="not-attended">Buổi {{ item.column }}</a>
+            </li>
+        </ul>
+    </div>
+    <button class="attendance-button" (click)="attendance()">Điểm danh</button>
+    <a href="http://localhost:3000/excel/download" target="_blank" class="attendance-button-link">
+        <button class="attendance-button">Download Excel</button>
+    </a>
 </div>
-<button class="attendance-button" (click)="attendance()">Điểm danh</button> -->
-
-<div class="dropdown" [class.error]="dropdownError">
-    <input class="dropdown-toggle" type="text" (click)="toggleDropdown()" />
-    <div class="dropdown-text">{{ selectedLessonText }}</div>
-    <ul class="dropdown-content" [class.show]="dropdownOpen">
-        <li>
-            <a (click)="chooseLesson(null)">__________</a>
-        </li>
-        <li *ngFor="let item of lesson">
-            <a (click)="chooseLesson(item)" *ngIf="item.attendance" class="attended">Buổi {{ item.column }}</a>
-            <a (click)="chooseLesson(item)" *ngIf="!item.attendance" class="not-attended">Buổi {{ item.column }}</a>
-        </li>
-    </ul>
-</div>
-<button class="attendance-button" (click)="attendance()">Điểm danh</button>
-<a href="http://localhost:3000/excel/download" target="_blank">
-    <button class="attendance-button">Download Excel</button>
-</a>

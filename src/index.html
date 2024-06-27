@@ -34,8 +34,11 @@
           <video id="video" width="600" height="450" autoplay></video>
         </div>
         <div class="control" id="controlDiv">
-          <button onclick="startWebcam()" class="button">Bắt đầu</button>
-          <button onclick="stopWebcam()" class="button">Kết thúc</button>
+          <button onclick="startWebcam()" class="button start-button" onmouseenter="hoverStartButton()"
+            onmouseleave="unhoverStartButton()">Bắt đầu</button>
+          <button onclick="stopWebcam()" class="button stop-button" onmouseenter="hoverStopButton()"
+            onmouseleave="unhoverStopButton()">Kết thúc</button>
+
         </div>
       </main>
     </div>
